@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>📊 股票业绩日报｜2026-08-29（手机版）</title>
+<title>📊 股票业绩日报｜2026-08-30（手机版）</title>
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { max-width: 100%; overflow-x: hidden; }
   body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
          background: #eef0f3; color: #1f2329; line-height: 1.55; }
   .page { max-width: 480px; margin: 0 auto; padding: 12px 12px 28px; }
@@ -13,13 +14,18 @@
   header { background: linear-gradient(135deg,#c0392b,#e05a3f); color:#fff; border-radius: 14px;
            padding: 16px 16px 14px; box-shadow: 0 4px 14px rgba(192,57,43,.25); }
   header h1 { font-size: 19px; margin: 0 0 4px; font-weight: 700; }
-  header .sub { font-size: 11.5px; opacity: .92; line-height:1.5; }
+  header .sub { font-size: 11.5px; opacity: .93; line-height:1.55; }
 
   .framework { background:#fff; border-radius:12px; padding:12px 14px; margin-top:12px; font-size:12.5px; color:#4e5969; box-shadow:0 1px 6px rgba(0,0,0,.05); }
   .framework b { color:#1f2329; }
   .framework .step { margin:3px 0; }
   .framework .num { display:inline-block; width:18px; height:18px; line-height:18px; text-align:center;
                     background:#c0392b; color:#fff; border-radius:50%; font-size:11px; margin-right:6px; }
+
+  .overview { background:#fff; border-radius:12px; padding:12px 14px; margin-top:12px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+  .overview h3 { font-size:14px; margin:0 0 8px; }
+  .ovgrid { display:grid; grid-template-columns:1fr 1fr; gap:7px 10px; }
+  .ovgrid .item .v { font-size:15px; font-weight:700; }
 
   .section { margin-top:16px; }
   .section-title { font-size:15px; font-weight:700; color:#1f2329; padding:6px 4px 8px;
@@ -30,12 +36,12 @@
   .card .name { display:flex; align-items:baseline; justify-content:space-between; }
   .card .name .nm { font-size:16.5px; font-weight:700; }
   .card .name .code { font-size:12px; color:#8a8f99; }
-  .card .theme { font-size:11px; color:#c0392b; background:#fdecea; padding:1px 8px; border-radius:9px; }
+  .card .theme { font-size:11px; color:#c0392b; background:#fdecea; padding:1px 8px; border-radius:9px; display:inline-block; margin-top:5px; }
 
   .grid { display:grid; grid-template-columns: 1fr 1fr; gap:7px 10px; margin:11px 0 4px; }
-  .item { background:#f7f8fa; border-radius:8px; padding:7px 9px; }
+  .item { background:#f7f8fa; border-radius:8px; padding:7px 9px; min-width:0; }
   .item .k { font-size:10.5px; color:#8a8f99; margin-bottom:2px; }
-  .item .v { font-size:13.5px; font-weight:600; }
+  .item .v { font-size:13.5px; font-weight:600; word-break:break-all; }
   .item.full { grid-column: 1 / -1; }
 
   .up { color:#d4380d; } .dn { color:#389e0d; } .warn { color:#d46b08; } .ok { color:#389e0d; }
@@ -43,12 +49,23 @@
   .risk b { color:#1f2329; }
   .risk .hl { color:#d4380d; font-weight:600; }
 
+  .quick { background:#fff; border-radius:12px; padding:6px 4px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+  .qrow { display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border-bottom:1px solid #f2f3f5; font-size:12.5px; gap:8px; }
+  .qrow:last-child { border-bottom:none; }
+  .qrow .l { min-width:0; }
+  .qrow .l .n { font-weight:600; font-size:13px; }
+  .qrow .l .c { font-size:10.5px; color:#8a8f99; }
+  .qrow .r { text-align:right; white-space:nowrap; }
+  .qrow .r .g { font-weight:700; font-size:13px; }
+  .qrow .r .d { font-size:10.5px; color:#8a8f99; }
+
   footer { font-size:11px; color:#9aa0a8; text-align:center; margin-top:18px; line-height:1.6; }
-  .note { font-size:11px; color:#9aa0a8; }
   .summary { background:#fff; border-radius:12px; padding:13px 14px; margin-top:16px; font-size:12.5px; line-height:1.75; box-shadow:0 1px 6px rgba(0,0,0,.05); }
   .summary h3 { font-size:14px; margin:0 0 6px; color:#1f2329; }
-  .summary .ok-t { color:#389e0d; font-weight:600; } .summary .bad-t { color:#d4380d; font-weight:600; }
+  .summary .bad-t { color:#d4380d; font-weight:600; }
+  .summary .ok-t { color:#389e0d; font-weight:600; }
   .summary .warn-t { color:#d46b08; font-weight:600; }
+  .disc { background:#fff5f0; border:1px solid #ffd8c7; border-radius:12px; padding:11px 13px; margin-top:14px; font-size:11.5px; color:#8a4b2a; line-height:1.7; }
 </style>
 </head>
 <body>
@@ -56,255 +73,214 @@
 
   <header>
     <h1>📊 股票业绩日报（手机版）</h1>
-    <div class="sub">2026-08-29 ｜ 8/28–8/29 集中披露期 ｜ 数据来源：上市公司半年报 / 证券时报 / 东方财富（行情 08-28）<br>📱 单栏卡片 · 无需横滑 · 红涨绿跌</div>
+    <div class="sub">2026-08-30（周日）｜ 覆盖 8/28–8/29 披露<br>
+    数据来源：上市公司半年报公告 · 证券时报 · 东方财富（行情截至 08-28 收盘）<br>
+    📱 单栏卡片 · 无需横滑 · 红涨绿跌</div>
   </header>
 
   <div class="framework">
-    <div class="step"><span class="num">1</span><b>基本面</b>：营收/净利增速·毛利率·ROE·经营现金流</div>
-    <div class="step"><span class="num">2</span><b>估值</b>：PE(TTM) 看贵贱，PEG&lt;1 偏低估（低基数高增会失真）</div>
-    <div class="step"><span class="num">3</span><b>风险</b>：现金流质量·存货/负债率·减持·周期属性</div>
-    <div class="step" style="color:#d4380d;margin-top:5px;">⚠️ 仅作业绩信息整理，<b>不构成投资建议</b>。</div>
+    <div class="step"><span class="num">1</span><b>基本面</b>：营收/净利及同比 · 毛利率 · ROE · 经营现金流质量</div>
+    <div class="step"><span class="num">2</span><b>估值</b>：PE(TTM)／动态PE · PB · PEG 高低判断</div>
+    <div class="step"><span class="num">3</span><b>风险</b>：驱动可持续性 · 现金流 · 负债率 · 周期属性</div>
+    <div class="step" style="color:#d4380d;margin-top:5px;">⚠️ 仅作业绩信息整理，<b>不构成投资建议，股市有风险</b>。</div>
   </div>
 
-  <!-- ============ AI / 科技 ============ -->
+  <div class="overview">
+    <h3>🗓️ 披露季收官前夜·全景</h3>
+    <div class="ovgrid">
+      <div class="item"><div class="k">半年报截止日</div><div class="v">8月31日</div></div>
+      <div class="item"><div class="k">已披露公司</div><div class="v">3872 家+</div></div>
+      <div class="item"><div class="k">净利同比翻倍</div><div class="v up">610 家 (15.8%)</div></div>
+      <div class="item"><div class="k">全A净利同比</div><div class="v up">+22.13%</div></div>
+      <div class="item full"><div class="k">行业利润（统计局，上半年）</div><div class="v"><span class="up">电子 +96.9%</span> ｜ <span class="up">有色 +99.4%</span></div></div>
+    </div>
+  </div>
+
+  <!-- ============ 主线一：AI / 科技 ============ -->
   <div class="section">
-    <div class="section-title">一、AI / 科技主线 <span class="count">5 只</span></div>
+    <div class="section-title">一、AI / 科技主线 <span class="count">6 只重点</span></div>
 
     <div class="card">
       <div class="name"><span class="nm">长鑫科技</span><span class="code">688825</span></div>
-      <div class="theme">DRAM 涨价 · 市值一哥</div>
+      <div class="theme">国产 DRAM 龙头 · A股市值一哥</div>
       <div class="grid">
         <div class="item"><div class="k">营收(亿)</div><div class="v">1503.1 <span class="up">+873.6%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">776.05 扭亏</div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">—</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">—</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v ok">强劲</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v warn">141.1 偏高</div></div>
+        <div class="item"><div class="k">归母净利(亿)</div><div class="v up">776.05 扭亏</div></div>
+        <div class="item"><div class="k">毛利率</div><div class="v up">84.84%（25年41%）</div></div>
+        <div class="item"><div class="k">EPS</div><div class="v">1.2893 元</div></div>
+        <div class="item full"><div class="k">经营现金流</div><div class="v ok">+1311.56 亿（+2985.6%），现金/净利 169% 极佳</div></div>
+        <div class="item"><div class="k">动态PE(H1年化)</div><div class="v warn">≈25.6 倍</div></div>
+        <div class="item"><div class="k">总市值</div><div class="v">3.98 万亿</div></div>
       </div>
-      <div class="risk">全球 DRAM 供不应求、价格大涨带动毛利。风险：<span class="hl">7月才上市，发行价8.66→58.6已涨+577%</span>，PE 偏高、高位回撤风险大。</div>
+      <div class="risk"><b>驱动</b>：全球 DRAM 供不应求＋涨价，Q2 净利 528.43 亿环比 +113%；全球第四大 DRAM 厂（份额 8%）；研发 68.59 亿 +87.4%；LPDDR6 送样；客户含阿里云/字节/腾讯/联想/小米。<br><b>风险</b>：<span class="hl">公司自述"价格持续大幅上涨不具备可持续性"</span>；7/27 上市，发行价 8.66 元→58.6 元累涨 +577%，高位波动大；计提减值近 3 亿。</div>
     </div>
 
     <div class="card">
-      <div class="name"><span class="nm">浪潮信息</span><span class="code">000977</span></div>
-      <div class="theme">AI 服务器 + 液冷</div>
+      <div class="name"><span class="nm">德明利</span><span class="code">001309</span></div>
+      <div class="theme">存储模组 · 深圳"存储五虎"</div>
       <div class="grid">
-        <div class="item"><div class="k">营收(亿)</div><div class="v">843.79 <span class="up">+5.2%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">29.52 <span class="up">+269.6%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">5.73%</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">11.46%</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v warn">偏弱</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v">44.5 中性</div></div>
+        <div class="item"><div class="k">营收(亿)</div><div class="v">169.11 <span class="up">+311.6%</span></div></div>
+        <div class="item"><div class="k">归母净利(亿)</div><div class="v up">60.17 扭亏</div></div>
+        <div class="item"><div class="k">毛利率(Q2)</div><div class="v">38.84%</div></div>
+        <div class="item"><div class="k">ROE(H1测算)</div><div class="v up">≈65%</div></div>
+        <div class="item"><div class="k">PE(TTM)</div><div class="v ok">14.26 低</div></div>
+        <div class="item"><div class="k">动态PE / PB</div><div class="v">≈8.1 / ≈10.4</div></div>
+        <div class="item full"><div class="k">经营现金流质量</div><div class="v warn">⚠️ 净利现金含量 −243%（Q2），利润未转为现金</div></div>
       </div>
-      <div class="risk">兆瓦级液冷 AI 整机柜落地。风险：毛利低（5.7%）、现金流偏弱、PEG 偏高。</div>
+      <div class="risk"><b>驱动</b>：SSD 80.2 亿(47%)＋嵌入式 55.9 亿(33%)＋内存条 25.2 亿(15%)；外销占 65%；拟 10 派 15 元＋10 转 4。<br><b>风险</b>：<span class="hl">现金流为大额净流出，靠存货/应收支撑利润</span>；PE 低是"周期高点低估值陷阱"典型形态——存储价格一旦转向，分母(利润)会快速缩水。</div>
+    </div>
+
+    <div class="card">
+      <div class="name"><span class="nm">香农芯创</span><span class="code">300475</span></div>
+      <div class="theme">元器件分销 + 海普存储</div>
+      <div class="grid">
+        <div class="item"><div class="k">营收(亿)</div><div class="v">602.04 <span class="up">+251.6%</span></div></div>
+        <div class="item"><div class="k">归母净利(亿)</div><div class="v">36.42 <span class="up">+2207.2%</span></div></div>
+        <div class="item"><div class="k">毛利率(Q2)</div><div class="v warn">13.23% 偏薄</div></div>
+        <div class="item"><div class="k">ROE(H1)</div><div class="v up">68.13%</div></div>
+        <div class="item"><div class="k">PE(TTM)</div><div class="v ok">20.06</div></div>
+        <div class="item"><div class="k">动态PE / PB</div><div class="v warn">≈11.1 / 11.32</div></div>
+        <div class="item full"><div class="k">经营现金流</div><div class="v ok">净利现金含量 133%（Q2），回款健康</div></div>
+      </div>
+      <div class="risk"><b>驱动</b>：分销 564.02 亿(93.9%)；海普存储 36.26 亿(收入同比 +996%)，绑定 AI 服务器链。<br><b>风险</b>：<span class="hl">Q1 资产负债率 75.4%、有息负债率 24.2%，杠杆高</span>；分销模式毛利仅 13%，业绩弹性来自"涨价+库存增值"而非技术壁垒；PB 11 倍 vs 分销行业属性偏高；近 3 月 8 位分析师<b>目标均价 130.62 元，低于现价 172.10 元</b>。</div>
     </div>
 
     <div class="card">
       <div class="name"><span class="nm">源杰科技</span><span class="code">688498</span></div>
-      <div class="theme">数据中心光芯片</div>
+      <div class="theme">数据中心光芯片 · A股第二高价股</div>
       <div class="grid">
         <div class="item"><div class="k">营收(亿)</div><div class="v">9.25 <span class="up">+351.4%</span></div></div>
         <div class="item"><div class="k">归母净利(亿)</div><div class="v">6.07 <span class="up">+1212.2%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">80.42%</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">19.32%</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v ok">+4.88亿 健康</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v warn">537.9 极贵</div></div>
+        <div class="item"><div class="k">毛利率(Q2)</div><div class="v up">82.06% 极高</div></div>
+        <div class="item"><div class="k">净利率(Q2)</div><div class="v up">75.04%</div></div>
+        <div class="item"><div class="k">动态PE(H1年化)</div><div class="v warn">≈158 倍 极贵</div></div>
+        <div class="item"><div class="k">总市值 / 股价</div><div class="v">1915 亿 / 1538 元</div></div>
+        <div class="item full"><div class="k">经营现金流</div><div class="v ok">净利现金含量 104.8%（Q2），ROA 12.66%</div></div>
       </div>
-      <div class="risk">数据中心光芯片放量（占收84%）。风险：<span class="hl">PE 超 500 倍、股价1538元居A股第二高价</span>，估值依赖高成长持续。</div>
+      <div class="risk"><b>驱动</b>：数据中心业务 7.74 亿<span class="up">（+640.3%）</span>占收 83.7%；电信 1.48 亿 +48.6%；拟 10 派 10 元。AI 拉动半导体激光器芯片需求。<br><b>风险</b>：<span class="hl">动态 PE 近 160 倍，年内累涨 247%，8/28 单日跌 5.68%</span>；估值完全建立在高增长延续假设上，一旦季度增速回落，回撤空间大。</div>
     </div>
 
     <div class="card">
-      <div class="name"><span class="nm">澜起科技</span><span class="code">688008</span></div>
-      <div class="theme">存储接口芯片</div>
+      <div class="name"><span class="nm">利通电子</span><span class="code">603629</span></div>
+      <div class="theme">算力租赁 + 精密结构件</div>
       <div class="grid">
-        <div class="item"><div class="k">营收(亿)</div><div class="v">33.35 <span class="up">+26.7%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">19.97 <span class="up">+72.3%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">高</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">—</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v ok">健康</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v">约60 中性</div></div>
+        <div class="item"><div class="k">营收(亿)</div><div class="v">21.01 <span class="up">+38.6%</span></div></div>
+        <div class="item"><div class="k">归母净利(亿)</div><div class="v">7.02 <span class="up">+1275.2%</span></div></div>
+        <div class="item"><div class="k">毛利率(Q2)</div><div class="v">46.94%</div></div>
+        <div class="item"><div class="k">ROE(H1测算)</div><div class="v up">≈20%</div></div>
+        <div class="item"><div class="k">PE(TTM)</div><div class="v warn">82.31 偏高</div></div>
+        <div class="item"><div class="k">动态PE / PB</div><div class="v warn">≈31.3 / ≈12.7</div></div>
+        <div class="item full"><div class="k">经营现金流</div><div class="v ok">净利现金含量 456%（Q2）——重资产折旧回收，质量高</div></div>
       </div>
-      <div class="risk">AI 与 DDR5 渗透带动。风险：半导体周期波动。</div>
+      <div class="risk"><b>驱动</b>：<span class="up">营收仅 +38.6% 而净利 +1275%</span>，说明高毛利算力业务占比快速提升（2025 年算力业务 12.0 亿占 36%）。<br><b>风险</b>：<span class="hl">Q1 资产负债率 75.1%、有息负债率 45.8%</span>——算力租赁属重资产高杠杆模式，对融资成本与 GPU 折旧假设敏感；PB 近 13 倍偏贵；8 月区间振幅 64%，8/28 跌 4.21%。</div>
     </div>
 
     <div class="card">
-      <div class="name"><span class="nm">君正股份</span><span class="code">601216</span></div>
-      <div class="theme">存储芯片涨价</div>
+      <div class="name"><span class="nm">富瀚微</span><span class="code">300613</span></div>
+      <div class="theme">端侧视觉 AI SoC / AI-ISP</div>
       <div class="grid">
-        <div class="item"><div class="k">营收(亿)</div><div class="v">39.57 <span class="up">+76.0%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">11.98 <span class="up">+489.6%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">—</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">—</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v">—</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v">待补</div></div>
+        <div class="item"><div class="k">营收(亿)</div><div class="v">14.63 <span class="up">+112.7%</span></div></div>
+        <div class="item"><div class="k">归母净利(亿)</div><div class="v">3.50 <span class="up">+1419.2%</span></div></div>
+        <div class="item"><div class="k">扣非净利(亿)</div><div class="v">3.35 <span class="up">+2094.6%</span></div></div>
+        <div class="item"><div class="k">毛利率(Q2)</div><div class="v">49.11%</div></div>
+        <div class="item"><div class="k">PE(TTM)</div><div class="v">36.46</div></div>
+        <div class="item"><div class="k">动态PE / PB</div><div class="v ok">≈24.6 / ≈5.4</div></div>
+        <div class="item full"><div class="k">经营现金流质量</div><div class="v warn">⚠️ 净利现金含量 −54%（Q2），备货占用资金</div></div>
       </div>
-      <div class="risk">存储大周期推动产品涨价。风险：存储价格周期性强。</div>
+      <div class="risk"><b>驱动</b>：智能视频 8.82 亿 +120.5%、智能物联 3.63 亿 +179.6%、智能出行 1.92 亿 +62.1%，三大板块量价齐升；研发 1.92 亿占营收 13.1%；专利 414 项。<br><b>风险</b>：<span class="hl">公司明言增长源于"上游涨价→同步提价"</span>，属传导型而非纯需求型；2025 全年净利仅 1.45 亿、2022 年 3.98 亿，历史盈利波动大；现金流为负。三条主线中<b>估值相对最不极端</b>的一只。</div>
     </div>
   </div>
 
-  <!-- ============ 资源 / 周期 ============ -->
+  <!-- ============ 主线二：资源 / 周期涨价 ============ -->
   <div class="section">
-    <div class="section-title">二、资源 / 周期涨价主线 <span class="count">5 只</span></div>
+    <div class="section-title">二、资源 / 周期涨价主线 <span class="count">3 只重点</span></div>
 
     <div class="card">
-      <div class="name"><span class="nm">东方盛虹</span><span class="code">000301</span></div>
-      <div class="theme">石化涨价</div>
+      <div class="name"><span class="nm">天齐锂业</span><span class="code">002466</span></div>
+      <div class="theme">全球硬岩锂矿龙头 · 险资新进</div>
       <div class="grid">
-        <div class="item"><div class="k">营收(亿)</div><div class="v">699.24 <span class="up">+14.8%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">45.0 <span class="up">+1065.1%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">—</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">—</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v">—</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v warn">76.1 偏高</div></div>
+        <div class="item"><div class="k">营收(亿)</div><div class="v">122.42 <span class="up">+153.3%</span></div></div>
+        <div class="item"><div class="k">归母净利(亿)</div><div class="v">42.42 <span class="up">+4925.5%</span></div></div>
+        <div class="item"><div class="k">扣非净利(亿)</div><div class="v up">42.00（+31.8万%）</div></div>
+        <div class="item"><div class="k">ROE(加权)</div><div class="v">9.24%（+9.04pct）</div></div>
+        <div class="item"><div class="k">PE(TTM) / 动态</div><div class="v ok">18.58 / 10.12</div></div>
+        <div class="item"><div class="k">PB / 资产负债率</div><div class="v ok">1.78 / 28.46%</div></div>
+        <div class="item full"><div class="k">经营现金流</div><div class="v">+22.12 亿（+21.5%），现金/净利 ≈52% 一般</div></div>
       </div>
-      <div class="risk">地缘冲突+航运受阻推升石化价格、毛利改善（上年亏损基数低）。风险：<span class="hl">PE 偏高、强周期</span>，价差回落即承压。</div>
+      <div class="risk"><b>驱动</b>：碳酸锂价格中枢较 2025 年明显抬升；锂矿 51.22 亿<b>毛利率 74.19%</b>、锂化合物 71.01 亿毛利率 57.35%；格林布什锂精矿产能 214 万吨/年（全球硬岩锂矿产量第一，占 18%）；太平洋人寿新进十大股东。<br><b>风险</b>：<span class="hl">强周期股——锂价 2026 年已走出"冲高后震荡回落"</span>；扣非增速 31.8 万倍源自去年 132 万元的近零基数，同比数字失真；PB 1.78 与 28% 负债率是本组最健康的资产表，但估值锚定锂价而非成长性。</div>
     </div>
 
     <div class="card">
-      <div class="name"><span class="nm">赣锋锂业</span><span class="code">002460</span></div>
-      <div class="theme">锂价回升 · 扭亏</div>
+      <div class="name"><span class="nm">翔鹭钨业</span><span class="code">002842</span></div>
+      <div class="theme">钨价上涨 · 传导顺畅</div>
       <div class="grid">
-        <div class="item"><div class="k">营收(亿)</div><div class="v">230.97 <span class="up">+175.8%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">42.57 扭亏</div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">32.69%</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">9.09%</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v ok">+13.28亿 +342%</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v ok">~18.0 合理</div></div>
+        <div class="item"><div class="k">营收(亿)</div><div class="v">26.33 <span class="up">+182.9%</span></div></div>
+        <div class="item"><div class="k">归母净利(亿)</div><div class="v">4.82 <span class="up">+2522.4%</span></div></div>
+        <div class="item"><div class="k">扣非净利(亿)</div><div class="v up">4.69 (+4855.4%)</div></div>
+        <div class="item"><div class="k">ROE(H1测算)</div><div class="v up">≈27%</div></div>
+        <div class="item"><div class="k">PE(TTM)</div><div class="v">34.02</div></div>
+        <div class="item"><div class="k">动态PE / 市值</div><div class="v ok">≈13.6 / 131 亿</div></div>
+        <div class="item full"><div class="k">在手订单</div><div class="v ok">约 15.04 亿元（对应收入）</div></div>
       </div>
-      <div class="risk">锂系列售价回升+锂电池销量增。风险：<span class="hl">存货151.5亿占净资产31%</span>，锂价波动影响大。</div>
-    </div>
-
-    <div class="card">
-      <div class="name"><span class="nm">新乡化纤</span><span class="code">000949</span></div>
-      <div class="theme">氨纶涨价</div>
-      <div class="grid">
-        <div class="item"><div class="k">营收(亿)</div><div class="v">45.78 <span class="up">+22.5%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">3.45 <span class="up">+449.1%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">16.41%</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">4.92%</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v ok">+8.18亿 健康</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v">42.7 中性</div></div>
-      </div>
-      <div class="risk">氨纶从磨底到抬升、产销两旺，出口+38.9%。风险：毛利偏低（16%）、周期属性。</div>
+      <div class="risk"><b>驱动</b>：钨价上涨带动营收，<b>原材料涨价向下游传导顺畅</b>；粉末制品 18.99 亿(72%)、硬质合金 5.18 亿(20%)；境外收入占 24.5%。<br><b>风险</b>：<span class="hl">2026 年内股价已涨超 170%，自 2025 年初累涨超 500%</span>，涨幅充分反映业绩；2022–2024 连续三年亏损，盈利刚扭转、稳定性未经验证；8/28 换手率 18.27% 交投过热。</div>
     </div>
 
     <div class="card">
       <div class="name"><span class="nm">福达合金</span><span class="code">603045</span></div>
-      <div class="theme">电接触材料 + 数据中心</div>
+      <div class="theme">电接触材料 · 切入数据中心</div>
       <div class="grid">
         <div class="item"><div class="k">营收(亿)</div><div class="v">43.99 <span class="up">+96.4%</span></div></div>
         <div class="item"><div class="k">归母净利(亿)</div><div class="v">3.10 <span class="up">+1146.6%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">—</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">—</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v">—</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v">待补</div></div>
+        <div class="item"><div class="k">ROE(H1测算)</div><div class="v up">≈22%</div></div>
+        <div class="item"><div class="k">PE(TTM)</div><div class="v">21.42</div></div>
+        <div class="item"><div class="k">动态PE / PB</div><div class="v warn">≈13.6 / 6.72</div></div>
+        <div class="item"><div class="k">总市值</div><div class="v">84.22 亿（小盘）</div></div>
+        <div class="item full"><div class="k">结构亮点</div><div class="v ok">海外+高端客户 6.96 亿（+99%），占营收 16%</div></div>
       </div>
-      <div class="risk">汽车/储能/数据中心多领域放量。风险：披露前股价已涨停、年内涨超200%，注意兑现。</div>
-    </div>
-
-    <div class="card">
-      <div class="name"><span class="nm">华峰化学</span><span class="code">002064</span></div>
-      <div class="theme">氨纶龙头</div>
-      <div class="grid">
-        <div class="item"><div class="k">营收(亿)</div><div class="v">141.66 <span class="up">+16.7%</span></div></div>
-        <div class="item"><div class="k">归母净利(亿)</div><div class="v">19.83 <span class="up">+101.6%</span></div></div>
-        <div class="item"><div class="k">毛利率</div><div class="v">22.02%</div></div>
-        <div class="item"><div class="k">ROE</div><div class="v">—</div></div>
-        <div class="item"><div class="k">经营现金流</div><div class="v">—</div></div>
-        <div class="item"><div class="k">估值 PE(TTM)</div><div class="v">待补</div></div>
-      </div>
-      <div class="risk">氨纶40D从2.3万涨至近3万。风险：周期属性，价跌则利润回落。</div>
+      <div class="risk"><b>驱动</b>：汽车(含新能源) 2.73 亿 <span class="up">+273.5%</span>、储能 8963 万 <span class="up">+154.9%</span>、数据中心相关 8203 万——<b>兼具周期涨价与算力需求双属性</b>。<br><b>风险</b>：<span class="hl">年内累涨超 200%，8/28 半年报前夜涨停</span>，属"利好兑现前抢筹"形态；PB 6.72 倍对材料股偏高；2025 全年净利仅 1.08 亿，利润基数薄、单季波动放大明显。</div>
     </div>
   </div>
 
-  <!-- ============ 其他高增 ============ -->
+  <!-- ============ 主线三：其他高增速览 ============ -->
   <div class="section">
-    <div class="section-title">三、其他高增（速览） <span class="count">9 只</span></div>
-
-    <div class="card">
-      <div class="name"><span class="nm">昭衍新药</span><span class="code">603127</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+1126.8%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">CRO 猴价回升</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收7.04亿 +5.3%，实验猴资产价值修复</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">海德股份</span><span class="code">000567</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+815.8%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">不良资管</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收18.64亿 +452.3%</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">百济神州</span><span class="code">—</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+627.2%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">创新药</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收222.2亿 +26.8%，肿瘤创新药龙头</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">亨通光电</span><span class="code">600487</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+93.4%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">光纤海缆</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收420.26亿 +31.1%</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">五粮液</span><span class="code">000858</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+89.3%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">白酒</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收284.17亿 +20.9%，低基数+旺季动销</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">德业股份</span><span class="code">605117</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+78.5%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">逆变器</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收106.41亿 +92.2%</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">深南电路</span><span class="code">002916</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+65.6%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">PCB/AI 载板</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收152.96亿 +46.3%</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">京东方A</span><span class="code">000725</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+61.6%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">面板</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收1031.32亿 +1.8%，Q2净利环比+107%</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="name"><span class="nm">新华保险</span><span class="code">601336</span></div>
-      <div class="grid">
-        <div class="item"><div class="k">归母净利同比</div><div class="v up">+54.0%</div></div>
-        <div class="item"><div class="k">主线</div><div class="v">保险</div></div>
-        <div class="item full"><div class="k">备注</div><div class="v" style="font-weight:400;font-size:12.5px;">营收832.58亿 +18.9%，投资端改善</div></div>
-      </div>
+    <div class="section-title">三、其他高增速览 <span class="count">8/27–8/29 披露</span></div>
+    <div class="quick">
+      <div class="qrow"><div class="l"><div class="n">赛微电子</div><div class="c">300456 · MEMS · 08-27</div></div><div class="r"><div class="g up">+415612%</div><div class="d">净利 27.02 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">航天彩虹</div><div class="c">002389 · 无人机 · 08-28</div></div><div class="r"><div class="g up">+15493%</div><div class="d">净利 0.75 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">宇顺电子</div><div class="c">002289 · 数据中心 · 08-29</div></div><div class="r"><div class="g up">+6381%</div><div class="d">净利 2.80 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">瑞松科技</div><div class="c">688090 · 智能装备 · 08-28</div></div><div class="r"><div class="g up">+3349%</div><div class="d">净利 0.42 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">宏源药业</div><div class="c">301246 · 医药化工 · 08-28</div></div><div class="r"><div class="g up">+2789%</div><div class="d">净利 1.56 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">歌华有线</div><div class="c">600037 · 传媒 · 08-29</div></div><div class="r"><div class="g up">+2302%</div><div class="d">净利 2.13 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">固德威</div><div class="c">688390 · 光伏逆变 · 08-28</div></div><div class="r"><div class="g up">+1826%</div><div class="d">净利 2.86 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">佛塑科技</div><div class="c">000973 · 新材料 · 08-28</div></div><div class="r"><div class="g up">+1608%</div><div class="d">净利 9.05 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">哈森股份</div><div class="c">603958 · 消费 · 08-29</div></div><div class="r"><div class="g up">+1569%</div><div class="d">净利 0.25 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">同有科技</div><div class="c">300302 · 存储 · 08-28</div></div><div class="r"><div class="g up">+1503%</div><div class="d">净利 2.58 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">一汽解放</div><div class="c">000800 · 重卡 · 08-29</div></div><div class="r"><div class="g up">+1459%</div><div class="d">净利 3.06 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">南网数字</div><div class="c">301638 · 电力数字化 · 08-28</div></div><div class="r"><div class="g up">+1454%</div><div class="d">净利 2.02 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">富春染织</div><div class="c">605189 · 纺织 · 08-28</div></div><div class="r"><div class="g up">+1238%</div><div class="d">净利 1.80 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">中科仪</div><div class="c">920186 · 半导体设备 · 08-28</div></div><div class="r"><div class="g up">+1230%</div><div class="d">净利 18.39 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">昭衍新药</div><div class="c">603127 · CRO · 08-28</div></div><div class="r"><div class="g up">+1127%</div><div class="d">净利 7.48 亿</div></div></div>
+      <div class="qrow"><div class="l"><div class="n">金安国纪</div><div class="c">002636 · 覆铜板 · 08-27</div></div><div class="r"><div class="g up">+987%</div><div class="d">净利 7.66 亿</div></div></div>
     </div>
   </div>
 
   <div class="summary">
-    <h3>📌 综合观察</h3>
-    <div><span class="ok-t">现金健康+估值合理</span>：赣锋锂业(PE~18、现金流+13亿)、新乡化纤(现金流+8亿)、浪潮信息(PE44中性)</div>
-    <div><span class="bad-t">高增长但估值偏贵</span>：长鑫科技(PE141)、源杰科技(PE538)、东方盛虹(PE76) —— 多由低基数/刚扭亏或高预期推高</div>
-    <div><span class="warn-t">周期属性强</span>：石化(东方盛虹)、氨纶(新乡/华峰)、锂(赣锋)、存储(长鑫/君正) 业绩高度依赖产品价格，涨价持续性存疑</div>
-    <div><span class="warn-t">追高提示</span>：长鑫科技上市以来+577%、源杰科技/福达合金等已大幅上涨，注意高位回撤与利好兑现</div>
-    <div class="note">* PE 为 08-28 行情 TTM 值；"待补"为当日未抓取到的估值，次日补全。</div>
+    <h3>🧭 一句话总结（按基本面→估值→风险）</h3>
+    <b>1. 基本面：真金白银，但成色分化。</b>本轮高增高度集中在<span class="bad-t">存储/DRAM 涨价</span>与<span class="bad-t">资源品涨价</span>两条价格逻辑上。真正"利润变现金"的只有<span class="ok-t">长鑫科技（169%）、利通电子（456%）、香农芯创（133%）、源杰科技（105%）</span>；而<span class="warn-t">德明利（−243%）、富瀚微（−54%）</span>的利润仍压在存货与应收里，需下一季验证。<br><br>
+    <b>2. 估值：低 PE 不等于便宜。</b>德明利 14 倍、香农芯创 20 倍、天齐锂业 10 倍动态 PE 看似低估，但分母是<b>周期顶部利润</b>，PEG 在此类标的上几乎失效。反过来<span class="warn-t">源杰科技 ≈158 倍、利通电子 82 倍(TTM)</span>已把未来数年增长提前定价。相对均衡的是<span class="ok-t">富瀚微（动态 24.6 倍/PB 5.4）与天齐锂业（PB 1.78/负债率 28%）</span>。<br><br>
+    <b>3. 风险：三个共性信号。</b>①多家公司自己提示涨价不可持续（长鑫明确写入半年报）；②高增速普遍源于<b>近零基数</b>（天齐去年扣非仅 132 万、翔鹭连亏三年），同比倍数严重失真；③股价已大幅先行——翔鹭年内 +170%、福达 +200%、源杰 +247%，业绩兑现日往往就是获利了结日（源杰 8/28 跌 5.68%、利通跌 4.21%）。<br><br>
+    <b>4. 下一步观察点：</b>8/31 半年报收官后关注 Q3 存储与钨、锂现货价走势，以及现金流是否补回——这是判断本轮"报表高增"能否延续为"持续盈利"的唯一硬指标。
+  </div>
+
+  <div class="disc">
+    <b>数据来源</b>：上市公司 2026 年半年度报告及公告、证券时报／e 公司、上海证券报·中国证券网、经济参考报、东方财富网、深交所（行情与估值截至 2026-08-28 收盘）。<br>
+    <b>说明</b>：标注"测算""≈"的 ROE／PB／动态 PE 为依据半年报每股数据与 08-28 收盘价推算，与各行情终端口径可能存在差异；动态 PE 按 H1 净利简单年化，不代表全年盈利预测。<br>
+    <b>⚠️ 本页仅为业绩数据整理，不构成任何投资建议。股市有风险，投资需谨慎。</b>
   </div>
 
   <footer>
-    本报告由自动化任务生成，数据来自公开披露与财经媒体，截至 2026-08-28 行情。仅供信息参考，不构成任何投资建议。投资有风险，决策需谨慎。
+    📊 股票业绩日报（手机版）· 自动生成于 2026-08-30 09:00<br>
+    覆盖 2026 半年报披露季 8/28–8/29 新增高增个股
   </footer>
 
 </div>
